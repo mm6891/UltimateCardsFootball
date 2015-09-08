@@ -13,23 +13,23 @@ import gssports.ultimatecardsfootball.R;
  */
 public class StadiumActivity extends Activity {
 
-        //botonera terreno de juego
-        private Button btn00;
+    //botonera terreno de juego
+    private Button btn00;
 
-        private GridLayout gv;
+    private GridLayout gvStadium;
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.stadium);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.stadium);
 
-            //casilla 00
-            btn00 = (Button) findViewById(R.id.imgBtn00);
-            btn00.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
+        //casilla 00
+        btn00 = (Button) findViewById(R.id.imgBtn00);
+        btn00.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
 
-                }
-            });
+            }
+        });
 
          /*   //tamanyo de gridlayout segun pantalla en pixeles
             Display display = getWindowManager().getDefaultDisplay();
@@ -53,7 +53,11 @@ public class StadiumActivity extends Activity {
                 row.setWidth(anchoBoton);
             }*/
 
-        }
+    }
+
+    private void loadPlayers(){
+
+    }
 
         /*@Override
         public void onBackPressed() {
