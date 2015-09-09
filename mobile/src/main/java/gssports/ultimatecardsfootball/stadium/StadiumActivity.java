@@ -27,6 +27,15 @@ public class StadiumActivity extends Activity {
         btn00 = (Button) findViewById(R.id.imgBtn00);
         btn00.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                //se comprueba si hay jugador
+
+                //si hay jugador, se comprueba si lleva el balon
+
+                //si lleva el balon se miran sus valores, y mostrar sus opciones en modal
+
+                //esperar respuesta de usuario y mostrar casillas posibles a accion respondida
+
+                //ejecutar accion
 
             }
         });
