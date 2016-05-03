@@ -16,15 +16,16 @@ import gssports.ultimatecardsfootball.R;
 public class CardActivity extends Activity {
 		
 	public static final String TAG = "CardActivity";	
-		    
-    private GridLayout gvStadium;
-	
-	private AlertDialog mAlertDialog;
+		       
  
+	TextView tvName;
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.card);		
+		
+		tvName = (TextView) findViewById(R.id.tvName);
 		
             
     }

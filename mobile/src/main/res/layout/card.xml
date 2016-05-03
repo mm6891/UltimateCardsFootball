@@ -40,17 +40,17 @@
             android:id="@+id/tvNumero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="name"/>
+            android:text="numero"/>
         <TextView
             android:id="@+id/tvDatosVarios"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="name"/>
+            android:text="datos"/>
         <TextView
             android:id="@+id/tvDemarcacion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="name"/>
+            android:text="demarcacion"/>
     </LinearLayout>
     <!-- valores del jugador -->
     <LinearLayout
