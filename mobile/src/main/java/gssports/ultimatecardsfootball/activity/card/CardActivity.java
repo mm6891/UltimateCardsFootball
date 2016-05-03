@@ -19,15 +19,52 @@ public class CardActivity extends Activity {
 		       
  
 	TextView tvName;
+	TextView tvDemarcacion;
+	TextView tvAtributos;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.card);		
 		
+		String idPlayer = getArguments().getString("idCard");
+		CardDAO cardDAO = new CardDAO(getApplicationContext());
+        Card card = cardDAO.selectCardByID(Integer.valueOf(idPlayer).intValue);
+				
 		tvName = (TextView) findViewById(R.id.tvName);
+		tvDemarcacion = (TextView) findViewById(R.id.tvDemarcacion);
+		tvAtributos = (TextView) findViewById(R.id.tvAtributos);
 		
-            
+		tvName.setText(card.getNombre());
+		tvDemarcacion.setText(card.getDemarcacion());
+		tvAtributos.setText(loadAtributosCard(card.getAtributos()) + loadAvanzadosCard(card.getAvanzados()));        
     }
+
+	private String loadAtributosCard(Atributos atributos) {	
+		StringBuilder strBuilderAtributos = new StringBuilder();		
 		
+		Class clsAtributos = Class.forName(Constantes.PACKAGE_CLASS_ATRIBUTOS);		
+		for (Field f : clsAtributos.getDeclaredFields()) {			
+			Object value = f.get(atributos);
+			int valueInt = Integer.valueOf(value).intValue();
+			if(valueInt > 0){
+				strBuilderAtributos.append("|").append(f.getName()).append(":").append(String.valueOf(valueInt));
+			}
+		}	
+		return strBuilderAtributos.toString();
+	}
+	
+	private String loadAvanzadosCard(Avanzados avanzados) {
+		StringBuilder strBuilderAvanzados = new StringBuilder();		
+		
+		Class clsAvanzados = Class.forName(Constantes.PACKAGE_CLASS_AVANZADOS);		
+		for (Field f : clsAvanzados.getDeclaredFields()) {			
+			Object value = f.get(avanzados);
+			int valueInt = Integer.valueOf(value).intValue();
+			if(valueInt > 0){
+				strBuilderAvanzados.append("|").append(f.getName()).append(":").append(String.valueOf(valueInt));
+			}
+		}	
+		return strBuilderAvanzados.toString();
+	}
 }

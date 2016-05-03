@@ -9,19 +9,14 @@ import android.widget.GridLayout;
 import android.widget.Toast;
 import gssports.ultimatecardsfootball.R;
 import gssports.ultimatecardsfootball.database.dao.CardDAO;
-
+import gssports.ultimatecardsfootball.activity.util.Constantes;
 
 /**
  * Created by manuel.molero on 08/09/2015.
  */
 public class SelectPlayersActivity extends Activity {
 		
-	public static final String TAG = "SelectPlayersActivity";	
-	
-	public static final String PORTERO = "POR";	
-	public static final String DEFENSA = "DEF";	
-	public static final String CENTROCAMPISTA = "MED";	
-	public static final String DELANTERO = "DEL";	
+	public static final String TAG = "SelectPlayersActivity";			
 		
     //botonera terreno de juego
     private ImageButton btn00;
@@ -45,7 +40,7 @@ public class SelectPlayersActivity extends Activity {
 
         List<String> list = new ArrayList<String>();
         CardDAO cardDAO = new CardDAO(getApplicationContext());
-        String[] porteros = cardDAO.selectCardsByRol(PORTERO);
+        String[] porteros = cardDAO.selectCardsByRol(Constantes.PORTERO);
         list = Arrays.asList(porteros);
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,

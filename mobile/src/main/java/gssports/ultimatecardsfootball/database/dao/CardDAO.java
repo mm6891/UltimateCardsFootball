@@ -76,11 +76,11 @@ public class CardDAO {
         return ret; // iterate to get each value.
     }
 
-    public Card[] selectCardsByPlayer(int idPlayer) {
+    public Card[] selectCardsByPlayer(String playerNick) {
         Card[] ret;
         String[] cols = new String[] {DBUFC_CARD_ID,DBUFC_CARD_NOMBRE, DBUFC_CARD_ATRIBUTOS, DBUFC_CARD_AVANZADOS,DBUFC_CARD_POSICION,DBUFC_CARD_PLAYER,DBUFC_CARD_DEMARCACION};
-        String[] args = new String[]{String.valueOf(idPlayer)};
-        Cursor mCursor = database.query(true, CARD_TABLE,cols,DBUFC_CARD_ID + "=?"
+        String[] args = new String[]{playerNick};
+        Cursor mCursor = database.query(true, CARD_TABLE,cols,DBUFC_CARD_PLAYER + "=?"
                 , args, null, null, null, null);
         ret = new Card[mCursor.getCount()];
         int i = 0;
@@ -134,5 +134,44 @@ public class CardDAO {
         }
         return ret; // iterate to get each value.
     }
+	
+	public Card selectCardByID(int idCard) {
+        Card ret;
+        String[] cols = new String[] {DBUFC_CARD_ID,DBUFC_CARD_NOMBRE, DBUFC_CARD_ATRIBUTOS, DBUFC_CARD_AVANZADOS,DBUFC_CARD_POSICION,DBUFC_CARD_PLAYER,DBUFC_CARD_DEMARCACION};
+        String[] args = new String[]{String.valueOf(idCard)};
+        Cursor mCursor = database.query(true, CARD_TABLE,cols,DBUFC_CARD_ID + "=?"
+                , args, null, null, null, null);
+        ret = new Card();
+        int i = 0;
+        mCursor.moveToFirst();
+        while (mCursor.isAfterLast() == false) {
+            Card cardTemp = new Card();
+            cardTemp.set_id(mCursor.getInt(0));
+			cardTemp.setNombre(mCursor.getString(1));            
+			
+            int idAtributos = mCursor.getInt(2));
+			AtributosDAO atributosDAO = new AtributosDAO(dbHelper);
+			Atributos atributos = atributosDAO.selectAtributosPorCardID(idAtributos);
+            cardTemp.setAtributos(atributos);
+			
+			int idAvanzados = mCursor.getInt(3));
+			AvanzadosDAO avanzadosAO = new AvanzadosDAO(dbHelper);
+			Avanzados avanzados = avanzadosAO.selectAvanzadosPorCardID(idAvanzados);
+            cardTemp.setAvanzados(avanzados);
+			
+			int idPosicion = mCursor.getInt(4));
+			PosicionDAO posicionDAO = new PosicionDAO(dbHelper);
+			Posicion posicion = posicionDAO.selectPosicionPorCardID(idPosicion);
+            cardTemp.setPosicion(posicion);
+			
+			cardTemp.setPlayer(mCursor.getString(5));            
+			cardTemp.setDemarcacion(mCursor.getString(6)); 
+			
+            ret = cardTemp;
+            i++;
+            mCursor.moveToNext();
+        }
+        return ret; // iterate to get each value.
+    }    
 
 }
