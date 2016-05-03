@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <!-- nombre y escudo del club, imagen dinamica atributo src-->
+    <LinearLayout
+        android:id="@+id/lyCabecera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name"/>
+        <ImageView
+            android:id="@+id/imgEscudo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+    <!-- foto del jugador -->
+    <LinearLayout
+        android:id="@+id/lyFoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lyCabecera"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/imgFoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+    <!-- datos del jugador -->
+    <LinearLayout
+        android:id="@+id/lyDatos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lyFoto">
+        <TextView
+            android:id="@+id/tvNumero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name"/>
+        <TextView
+            android:id="@+id/tvDatosVarios"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name"/>
+        <TextView
+            android:id="@+id/tvDemarcacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name"/>
+    </LinearLayout>
+    <!-- valores del jugador -->
+    <LinearLayout
+        android:id="@+id/lyAtributos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lyDatos"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tvAtributos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RG:2|V:2|PC:1|PL:3"/>
+    </LinearLayout>
+</RelativeLayout>
