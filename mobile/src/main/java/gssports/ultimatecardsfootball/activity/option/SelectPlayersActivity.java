@@ -44,13 +44,31 @@ public class SelectPlayersActivity extends Activity {
 	private Button imgBtn22;
 	private Button imgBtn32;
 	private Button imgBtn42;
+	
+	private Button btnDone;
  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.team);		
 		
+		imgBtn00 = (Button) findViewById(R.id.imgBtn20);
+		imgBtn10 = (Button) findViewById(R.id.imgBtn20);
 		imgBtn20 = (Button) findViewById(R.id.imgBtn20);
+		imgBtn30 = (Button) findViewById(R.id.imgBtn20);
+		imgBtn40 = (Button) findViewById(R.id.imgBtn20);
+		imgBtn01 = (Button) findViewById(R.id.imgBtn20);
+		imgBtn11 = (Button) findViewById(R.id.imgBtn20);
+		imgBtn21 = (Button) findViewById(R.id.imgBtn20);
+		imgBtn31 = (Button) findViewById(R.id.imgBtn20);
+		imgBtn41 = (Button) findViewById(R.id.imgBtn20);
+		imgBtn02 = (Button) findViewById(R.id.imgBtn20);
+		imgBtn12 = (Button) findViewById(R.id.imgBtn20);
+		imgBtn22 = (Button) findViewById(R.id.imgBtn20);
+		imgBtn32 = (Button) findViewById(R.id.imgBtn20);
+		imgBtn42 = (Button) findViewById(R.id.imgBtn20);
+		
+		btnDone = (Button) findViewById(R.id.btnDone);
 		
 		//load goalkeepers
 		//cargamos el combo de porteros
@@ -102,5 +120,9 @@ public class SelectPlayersActivity extends Activity {
             }
         });
     }
+	
+	private void updateTeamByNick(){
+		
+	}
 		
 }
