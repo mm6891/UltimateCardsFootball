@@ -9,12 +9,10 @@ import android.widget.TextView;
 
 import gssports.ultimatecardsfootball.R;
 import gssports.ultimatecardsfootball.activity.option.SelectPlayersActivity;
-import gssports.ultimatecardsfootball.activity.util.*;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.multiplayer.OnInvitationReceivedListener;
-
 import com.google.android.gms.plus.Plus;
 
 
@@ -24,7 +22,10 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 
 	public static final String TAG = "MainActivity";
 	
-	    // Are we currently resolving a connection failure?
+	// Client used to interact with Google APIs
+    private GoogleApiClient mGoogleApiClient;
+	
+	// Are we currently resolving a connection failure?
     private boolean mResolvingConnectionFailure = false;
 
 	/**
@@ -83,13 +84,13 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 	
 	protected void onStart() {
         super.onStart();
-        GoogleApiUtil.getApiClient().connect();
+        mGoogleApiClient.connect();
     }
  
     protected void onStop() {
         super.onStop();
-        if (GoogleApiUtil.getApiClient().isConnected()) {
-            GoogleApiUtil.getApiClient().disconnect();
+        if (mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
         }
     }
  
@@ -103,7 +104,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
                 mConnectionResult.startResolutionForResult(this, RC_SIGN_IN);
             } catch (SendIntentException e) {
                 mIntentInProgress = false;
-                GoogleApiUtil.getApiClient().connect();
+                mGoogleApiClient.connect();
             }
         }
     }
@@ -140,8 +141,8 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
  
             mIntentInProgress = false;
  
-            if (!GoogleApiUtil.getApiClient().isConnecting()) {
-                GoogleApiUtil.getApiClient().connect();
+            if (!mGoogleApiClient.isConnecting()) {
+                mGoogleApiClient.connect();
             }
         }
     }
@@ -175,7 +176,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
  
     @Override
     public void onConnectionSuspended(int arg0) {
-        GoogleApiUtil.getApiClient().connect();
+        mGoogleApiClient.connect();
         updateUI(false);
     }
  
@@ -190,7 +191,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
      * Sign-in into google
      * */
     private void signInWithGplus() {
-        if (!GoogleApiUtil.getApiClient().isConnecting()) {
+        if (!mGoogleApiClient.isConnecting()) {
             mSignInClicked = true;
             resolveSignInError();
         }
@@ -200,10 +201,10 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
      * Sign-out from google
      * */
     private void signOutFromGplus() {
-        if (GoogleApiUtil.getApiClient().isConnected()) {
-            Plus.AccountApi.clearDefaultAccount(GoogleApiUtil.getApiClient());
-            GoogleApiUtil.getApiClient().disconnect();
-            GoogleApiUtil.getApiClient().connect();
+        if (mGoogleApiClient.isConnected()) {
+            Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
+            mGoogleApiClient.disconnect();
+            mGoogleApiClient.connect();
             updateUI(false);
         }
     }
@@ -212,18 +213,33 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
      * Revoking access from google
      * */
     private void revokeGplusAccess() {
-        if (GoogleApiUtil.getApiClient().isConnected()) {
-            Plus.AccountApi.clearDefaultAccount(GoogleApiUtil.getApiClient());
-            Plus.AccountApi.revokeAccessAndDisconnect(GoogleApiUtil.getApiClient())
+        if (mGoogleApiClient.isConnected()) {
+            Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
+            Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient)
                     .setResultCallback(new ResultCallback<Status>() {
                         @Override
                         public void onResult(Status arg0) {
                             Log.e(TAG, "User access revoked!");
-                            GoogleApiUtil.getApiClient().connect();
+                            mGoogleApiClient.connect();
                             updateUI(false);
                         }
  
                     });
         }
+    }
+	
+	// Handle notification events.
+    @Override
+    public void onInvitationReceived(Invitation invitation) {
+        Toast.makeText(
+                this,
+                "An invitation has arrived from "
+                        + invitation.getInviter().getDisplayName(), TOAST_DELAY)
+                .show();
+    }
+	
+	 @Override
+    public void onInvitationRemoved(String invitationId) {
+        Toast.makeText(this, "An invitation was removed.", TOAST_DELAY).show();
     }
 }
