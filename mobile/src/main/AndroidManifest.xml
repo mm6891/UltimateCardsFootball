@@ -10,14 +10,17 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        <activity android:name=".activity.option.SelectPlayersActivity" >
+        <activity android:name=".activity.main.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>		
+		<activity
+            android:name=".activity.option.SelectPlayersActivity"
+            android:label="@string/app_name" >
         </activity>
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
