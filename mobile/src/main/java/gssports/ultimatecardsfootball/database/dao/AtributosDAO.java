@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import gssports.ultimatecardsfootball.database.model.Atributos;
 import gssports.ultimatecardsfootball.database.util.MyDatabaseHelper;
 
 /**
@@ -33,12 +35,12 @@ public class AtributosDAO {
 
     /**
      *
-     * @param context
-     */
-    public AtributosDAO(){        
+	 */
+    public AtributosDAO(){
+
     }       
 
-    public Atributos selectAtributosPorCardID(int cardID, MyDatabaseHelper database) {
+    public Atributos selectAtributosPorCardID(int cardID, SQLiteDatabase database) {
         Atributos ret;
         String[] cols = new String[] {DBUFC_ATRIBUTOS_ID,DBUFC_ATRIBUTOS_CO, DBUFC_ATRIBUTOS_RF, DBUFC_ATRIBUTOS_SA,DBUFC_ATRIBUTOS_SP,DBUFC_ATRIBUTOS_PC,
 										DBUFC_ATRIBUTOS_PL,DBUFC_ATRIBUTOS_RG,DBUFC_ATRIBUTOS_A,DBUFC_ATRIBUTOS_RB,DBUFC_ATRIBUTOS_RC,DBUFC_ATRIBUTOS_LF,

@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import gssports.ultimatecardsfootball.database.model.Posicion;
 import gssports.ultimatecardsfootball.database.util.MyDatabaseHelper;
 
 /**
@@ -65,12 +67,11 @@ public class PosicionDAO {
 	
     /**
      *
-     * @param context
-     */
+	 */
     public PosicionDAO(){        
     }       
 
-    public Posicion selectPosicionPorCardID(int cardID, MyDatabaseHelper database) {
+    public Posicion selectPosicionPorCardID(int cardID, SQLiteDatabase database) {
         Posicion ret;
         String[] cols = new String[] {DBUFC_POSICION_ID,DBUFC_POSICION_POS00, DBUFC_POSICION_POS01, DBUFC_POSICION_POS02,DBUFC_POSICION_POS03,DBUFC_POSICION_POS04,DBUFC_POSICION_POS05,
 										DBUFC_POSICION_POS06,DBUFC_POSICION_POS07,DBUFC_POSICION_POS08,DBUFC_POSICION_POS09,DBUFC_POSICION_POS10,DBUFC_POSICION_POS11,DBUFC_POSICION_POS12,

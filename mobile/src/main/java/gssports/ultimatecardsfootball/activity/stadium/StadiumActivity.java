@@ -1,9 +1,12 @@
 package gssports.ultimatecardsfootball.activity.stadium;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.GridLayout;
 import android.widget.Toast;
@@ -23,7 +26,8 @@ import com.google.android.gms.games.multiplayer.turnbased.TurnBasedMatchConfig;
 import com.google.android.gms.games.multiplayer.turnbased.TurnBasedMultiplayer;
 import com.google.android.gms.games.multiplayer.Multiplayer;
 import com.google.android.gms.plus.Plus;
-import com.google.example.games.basegameutils.BaseGameUtils;
+
+import java.util.ArrayList;
 
 
 /**
@@ -177,9 +181,9 @@ public class StadiumActivity extends Activity implements GoogleApiClient.Connect
             mAutoStartSignInFlow = false;
             mSignInClicked = false;
 
-            mResolvingConnectionFailure = BaseGameUtils.resolveConnectionFailure(this,
+          /*  mResolvingConnectionFailure = BaseGameUtils.resolveConnectionFailure(this,
                     mGoogleApiClient, connectionResult, RC_SIGN_IN,
-                    getString(R.string.signin_other_error));
+                    getString(R.string.signin_other_error));*/
         }
 
         setViewVisibility();
@@ -279,7 +283,7 @@ public class StadiumActivity extends Activity implements GoogleApiClient.Connect
         String nextParticipantId = getNextParticipantId();
         // Create the next turn
         mTurnData.turnCounter += 1;
-        mTurnData.data = mDataView.getText().toString();
+        //mTurnData.data = mDataView.getText().toString();
 
         showSpinner();
 
@@ -338,11 +342,13 @@ public class StadiumActivity extends Activity implements GoogleApiClient.Connect
 	// Helpful dialogs
 
     public void showSpinner() {
-        findViewById(R.id.progressLayout).setVisibility(View.VISIBLE);
+
+        //findViewById(R.id.progressLayout).setVisibility(View.VISIBLE);
     }
 
     public void dismissSpinner() {
-        findViewById(R.id.progressLayout).setVisibility(View.GONE);
+
+        //findViewById(R.id.progressLayout).setVisibility(View.GONE);
     }
 
     // Generic warning/info dialog
@@ -405,7 +411,7 @@ public class StadiumActivity extends Activity implements GoogleApiClient.Connect
             if (response == Activity.RESULT_OK) {
                 mGoogleApiClient.connect();
             } else {
-                BaseGameUtils.showActivityResultError(this, request, response, R.string.signin_other_error);
+                //BaseGameUtils.showActivityResultError(this, request, response, R.string.signin_other_error);
             }
         } else if (request == RC_LOOK_AT_MATCHES) {
             // Returning from the 'Select Match' dialog
@@ -709,34 +715,34 @@ public class StadiumActivity extends Activity implements GoogleApiClient.Connect
                 // it from your final application.
                 return true;
             case GamesStatusCodes.STATUS_MULTIPLAYER_ERROR_NOT_TRUSTED_TESTER:
-                showErrorMessage(match, statusCode,
-                        R.string.status_multiplayer_error_not_trusted_tester);
+                /*showErrorMessage(match, statusCode,
+                        R.string.status_multiplayer_error_not_trusted_tester);*/
                 break;
             case GamesStatusCodes.STATUS_MATCH_ERROR_ALREADY_REMATCHED:
-                showErrorMessage(match, statusCode,
-                        R.string.match_error_already_rematched);
+               /* showErrorMessage(match, statusCode,
+                        R.string.match_error_already_rematched);*/
                 break;
             case GamesStatusCodes.STATUS_NETWORK_ERROR_OPERATION_FAILED:
-                showErrorMessage(match, statusCode,
-                        R.string.network_error_operation_failed);
+                /*showErrorMessage(match, statusCode,
+                        R.string.network_error_operation_failed);*/
                 break;
             case GamesStatusCodes.STATUS_CLIENT_RECONNECT_REQUIRED:
-                showErrorMessage(match, statusCode,
-                        R.string.client_reconnect_required);
+                /*showErrorMessage(match, statusCode,
+                        R.string.client_reconnect_required);*/
                 break;
             case GamesStatusCodes.STATUS_INTERNAL_ERROR:
-                showErrorMessage(match, statusCode, R.string.internal_error);
+                /*showErrorMessage(match, statusCode, R.string.internal_error);*/
                 break;
             case GamesStatusCodes.STATUS_MATCH_ERROR_INACTIVE_MATCH:
-                showErrorMessage(match, statusCode,
-                        R.string.match_error_inactive_match);
+               /* showErrorMessage(match, statusCode,
+                        R.string.match_error_inactive_match);*/
                 break;
             case GamesStatusCodes.STATUS_MATCH_ERROR_LOCALLY_MODIFIED:
-                showErrorMessage(match, statusCode,
-                        R.string.match_error_locally_modified);
+                /*showErrorMessage(match, statusCode,
+                        R.string.match_error_locally_modified);*/
                 break;
             default:
-                showErrorMessage(match, statusCode, R.string.unexpected_status);
+               //showErrorMessage(match, statusCode, R.string.unexpected_status);
                 Log.d(TAG, "Did not have warning or string to deal with: "
                         + statusCode);
         }
@@ -751,13 +757,13 @@ public class StadiumActivity extends Activity implements GoogleApiClient.Connect
                 // Check to see the developer who's running this sample code read the instructions :-)
                 // NOTE: this check is here only because this is a sample! Don't include this
                 // check in your actual production app.
-                if (!BaseGameUtils.verifySampleSetup(this, R.string.app_id)) {
+               /* if (!BaseGameUtils.verifySampleSetup(this, R.string.app_id)) {
                     Log.w(TAG, "*** Warning: setup problems detected. Sign in may not work!");
-                }
+                }*/
 
                 mSignInClicked = true;
                 mTurnBasedMatch = null;
-                findViewById(R.id.sign_in_button).setVisibility(View.GONE);
+                //findViewById(R.id.sign_in_button).setVisibility(View.GONE);
                 mGoogleApiClient.connect();
                 break;
             case R.id.btn_sign_out:

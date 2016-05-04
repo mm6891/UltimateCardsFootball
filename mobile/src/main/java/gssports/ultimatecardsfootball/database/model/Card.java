@@ -9,7 +9,7 @@ public class Card {
     String nombre;
     Atributos atributos;
 	Avanzados atributosAvanzados;
-    Posicion demarcacion;     
+    Posicion posicion;
 	String player;
 	String demarcacion;
 
@@ -46,11 +46,11 @@ public class Card {
     }
 	
 	public Posicion getPosicion() {
-        return demarcacion;
+        return posicion;
     }
 
-    public void setPosicion(Posicion demarcacion) {
-        this.demarcacion = demarcacion;
+    public void setPosicion(Posicion posicion) {
+        this.posicion = posicion;
     }
 	
 	 public String getPlayer() {

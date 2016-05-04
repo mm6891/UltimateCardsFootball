@@ -1,11 +1,12 @@
 package gssports.ultimatecardsfootball.database.dao;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
-import gssports.ultimatecardsfootball.database.model;
+import gssports.ultimatecardsfootball.database.model.Atributos;
+import gssports.ultimatecardsfootball.database.model.Avanzados;
+import gssports.ultimatecardsfootball.database.model.Card;
+import gssports.ultimatecardsfootball.database.model.Posicion;
 import gssports.ultimatecardsfootball.database.util.MyDatabaseHelper;
 
 /**
@@ -51,19 +52,19 @@ public class CardDAO {
             cardTemp.set_id(mCursor.getInt(0));
 			cardTemp.setNombre(mCursor.getString(1));            
 			
-            int idAtributos = mCursor.getInt(2));
-			AtributosDAO atributosDAO = new AtributosDAO(dbHelper);
-			Atributos atributos = atributosDAO.selectAtributosPorCardID(idAtributos);
+            int idAtributos = mCursor.getInt(2);
+			AtributosDAO atributosDAO = new AtributosDAO();
+			Atributos atributos = atributosDAO.selectAtributosPorCardID(idAtributos,database);
             cardTemp.setAtributos(atributos);
 			
-			int idAvanzados = mCursor.getInt(3));
-			AvanzadosDAO avanzadosAO = new AvanzadosDAO(dbHelper);
-			Avanzados avanzados = avanzadosAO.selectAvanzadosPorCardID(idAvanzados);
+			int idAvanzados = mCursor.getInt(3);
+			AvanzadosDAO avanzadosAO = new AvanzadosDAO();
+			Avanzados avanzados = avanzadosAO.selectAvanzadosPorCardID(idAvanzados,database);
             cardTemp.setAvanzados(avanzados);
 			
-			int idPosicion = mCursor.getInt(4));
-			PosicionDAO posicionDAO = new PosicionDAO(dbHelper);
-			Posicion posicion = posicionDAO.selectPosicionPorCardID(idPosicion);
+			int idPosicion = mCursor.getInt(4);
+			PosicionDAO posicionDAO = new PosicionDAO();
+			Posicion posicion = posicionDAO.selectPosicionPorCardID(idPosicion,database);
             cardTemp.setPosicion(posicion);
 			
 			cardTemp.setPlayer(mCursor.getString(5));            
@@ -90,19 +91,19 @@ public class CardDAO {
             cardTemp.set_id(mCursor.getInt(0));
 			cardTemp.setNombre(mCursor.getString(1));            
 			
-            int idAtributos = mCursor.getInt(2));
-			AtributosDAO atributosDAO = new AtributosDAO(dbHelper);
-			Atributos atributos = atributosDAO.selectAtributosPorCardID(idAtributos);
+            int idAtributos = mCursor.getInt(2);
+			AtributosDAO atributosDAO = new AtributosDAO();
+			Atributos atributos = atributosDAO.selectAtributosPorCardID(idAtributos,database);
             cardTemp.setAtributos(atributos);
 			
-			int idAvanzados = mCursor.getInt(3));
-			AvanzadosDAO avanzadosAO = new AvanzadosDAO(dbHelper);
-			Avanzados avanzados = avanzadosAO.selectAvanzadosPorCardID(idAvanzados);
+			int idAvanzados = mCursor.getInt(3);
+			AvanzadosDAO avanzadosAO = new AvanzadosDAO();
+			Avanzados avanzados = avanzadosAO.selectAvanzadosPorCardID(idAvanzados,database);
             cardTemp.setAvanzados(avanzados);
 			
-			int idPosicion = mCursor.getInt(4));
-			PosicionDAO posicionDAO = new PosicionDAO(dbHelper);
-			Posicion posicion = posicionDAO.selectPosicionPorCardID(idPosicion);
+			int idPosicion = mCursor.getInt(4);
+			PosicionDAO posicionDAO = new PosicionDAO();
+			Posicion posicion = posicionDAO.selectPosicionPorCardID(idPosicion,database);
             cardTemp.setPosicion(posicion);
 			
 			cardTemp.setPlayer(mCursor.getString(5));            
@@ -126,7 +127,7 @@ public class CardDAO {
         mCursor.moveToFirst();
         while (mCursor.isAfterLast() == false) {
             String cardTemp = new String();            
-			cardTemp.setNombre(mCursor.getString(0));            			           
+			cardTemp = mCursor.getString(0);
 			
             ret[i] = cardTemp;
             i++;
@@ -149,19 +150,19 @@ public class CardDAO {
             cardTemp.set_id(mCursor.getInt(0));
 			cardTemp.setNombre(mCursor.getString(1));            
 			
-            int idAtributos = mCursor.getInt(2));
-			AtributosDAO atributosDAO = new AtributosDAO(dbHelper);
-			Atributos atributos = atributosDAO.selectAtributosPorCardID(idAtributos);
+            int idAtributos = mCursor.getInt(2);
+			AtributosDAO atributosDAO = new AtributosDAO();
+			Atributos atributos = atributosDAO.selectAtributosPorCardID(idAtributos,database);
             cardTemp.setAtributos(atributos);
 			
-			int idAvanzados = mCursor.getInt(3));
-			AvanzadosDAO avanzadosAO = new AvanzadosDAO(dbHelper);
-			Avanzados avanzados = avanzadosAO.selectAvanzadosPorCardID(idAvanzados);
+			int idAvanzados = mCursor.getInt(3);
+			AvanzadosDAO avanzadosAO = new AvanzadosDAO();
+			Avanzados avanzados = avanzadosAO.selectAvanzadosPorCardID(idAvanzados,database);
             cardTemp.setAvanzados(avanzados);
 			
-			int idPosicion = mCursor.getInt(4));
-			PosicionDAO posicionDAO = new PosicionDAO(dbHelper);
-			Posicion posicion = posicionDAO.selectPosicionPorCardID(idPosicion);
+			int idPosicion = mCursor.getInt(4);
+			PosicionDAO posicionDAO = new PosicionDAO();
+			Posicion posicion = posicionDAO.selectPosicionPorCardID(idPosicion,database);
             cardTemp.setPosicion(posicion);
 			
 			cardTemp.setPlayer(mCursor.getString(5));            

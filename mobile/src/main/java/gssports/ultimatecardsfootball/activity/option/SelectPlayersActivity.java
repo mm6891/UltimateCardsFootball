@@ -4,9 +4,19 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.GridLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import gssports.ultimatecardsfootball.R;
 import gssports.ultimatecardsfootball.database.dao.CardDAO;
 import gssports.ultimatecardsfootball.activity.util.Constantes;
@@ -27,7 +37,7 @@ public class SelectPlayersActivity extends Activity {
 	//botones defensas
 	private Button imgBtn00;
 	private Button imgBtn10;
-	private Button imgBtn20;
+	//private Button imgBtn20;
 	private Button imgBtn30;
 	private Button imgBtn40;
 	
@@ -72,7 +82,7 @@ public class SelectPlayersActivity extends Activity {
 		
 		//load goalkeepers
 		//cargamos el combo de porteros
-        Spinner portero = (Spinner) findViewById(R.id.spPortero);
+        final Spinner portero = (Spinner) findViewById(R.id.spPortero);
 
         List<String> list = new ArrayList<String>();
         CardDAO cardDAO = new CardDAO(getApplicationContext());
@@ -97,23 +107,19 @@ public class SelectPlayersActivity extends Activity {
 		//cargamos el combo de defensas
         Spinner defensa = (Spinner) findViewById(R.id.spDefensa);
 
-        List<String> list = new ArrayList<String>();
-        CardDAO cardDAO = new CardDAO(getApplicationContext());
-        String[] defensas = cardDAO.selectCardsByRol(Constantes.DEFENSA);
-        list = Arrays.asList(defensas);
+        List<String> listDef = new ArrayList<String>();
 
-        ArrayAdapter<String> dataAdapterD = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, list);
-        dataAdapterD.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        defensa.setAdapter(dataAdapterD);
+        String[] defensas = cardDAO.selectCardsByRol(Constantes.DEFENSA);
+		listDef = Arrays.asList(defensas);
+
+        ArrayAdapter<String> dataAdapterDef = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, listDef);
+		dataAdapterDef.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        defensa.setAdapter(dataAdapterDef);
 		
 		defensa.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				imgBtn00;
-				imgBtn10;
-				imgBtn20;
-				imgBtn30;
-				imgBtn40;
+
             }
 
             public void onNothingSelected(AdapterView<?> parent) {

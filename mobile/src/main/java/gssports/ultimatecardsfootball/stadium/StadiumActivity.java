@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 
 import gssports.ultimatecardsfootball.R;
 
@@ -14,7 +15,7 @@ import gssports.ultimatecardsfootball.R;
 public class StadiumActivity extends Activity {
 
     //botonera terreno de juego
-    private Button btn00;
+    private ImageButton btn00;
 
     private GridLayout gvStadium;
 
@@ -24,7 +25,7 @@ public class StadiumActivity extends Activity {
         setContentView(R.layout.stadium);
 
         //casilla 00
-        btn00 = (Button) findViewById(R.id.imgBtn00);
+        btn00 = (ImageButton) findViewById(R.id.imgBtn00);
         btn00.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //se comprueba si hay jugador

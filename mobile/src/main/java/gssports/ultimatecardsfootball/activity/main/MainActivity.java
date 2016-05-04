@@ -2,11 +2,13 @@ package gssports.ultimatecardsfootball.activity.main;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import gssports.ultimatecardsfootball.R;
 import gssports.ultimatecardsfootball.activity.option.SelectPlayersActivity;
@@ -24,8 +26,9 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
         OnInvitationReceivedListener{    
 
 	public static final String TAG = "MainActivity";
-	
-	// Client used to interact with Google APIs
+    private static final int TOAST_DELAY = 1;
+
+    // Client used to interact with Google APIs
     private GoogleApiClient mGoogleApiClient;
 	
 	// Are we currently resolving a connection failure?
@@ -105,7 +108,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
             try {
                 mIntentInProgress = true;
                 mConnectionResult.startResolutionForResult(this, RC_SIGN_IN);
-            } catch (SendIntentException e) {
+            } catch (IntentSender.SendIntentException e) {
                 mIntentInProgress = false;
                 mGoogleApiClient.connect();
             }
@@ -153,7 +156,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     @Override
     public void onConnected(Bundle arg0) {
         mSignInClicked = false;
-        Toast.makeText(this, "User is connected!", Toast.LENGTH_LONG).show();       
+        Toast.makeText(this, "User is connected!", Toast.LENGTH_LONG).show();
  
         // Update the UI after signin
         updateUI(true);
@@ -186,7 +189,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        //getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }    
  
@@ -215,11 +218,11 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     /**
      * Revoking access from google
      * */
-    private void revokeGplusAccess() {
+    /*private void revokeGplusAccess() {
         if (mGoogleApiClient.isConnected()) {
             Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
             Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient)
-                    .setResultCallback(new ResultCallback<Status>() {
+                    .setResultCallback(new ResultCallback<AsyncTask.Status>() {
                         @Override
                         public void onResult(Status arg0) {
                             Log.e(TAG, "User access revoked!");
@@ -229,20 +232,17 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 
                     });
         }
-    }
+    }*/
 	
 	// Handle notification events.
     @Override
     public void onInvitationReceived(Invitation invitation) {
-        Toast.makeText(
-                this,
-                "An invitation has arrived from "
-                        + invitation.getInviter().getDisplayName(), TOAST_DELAY)
-                .show();
+        Toast.makeText(this,"An invitation has arrived from " +
+                invitation.getInviter().getDisplayName(), Toast.LENGTH_SHORT).show();
     }
 	
 	 @Override
     public void onInvitationRemoved(String invitationId) {
-        Toast.makeText(this, "An invitation was removed.", TOAST_DELAY).show();
+        Toast.makeText(this, "An invitation was removed.",Toast.LENGTH_SHORT).show();
     }
 }
