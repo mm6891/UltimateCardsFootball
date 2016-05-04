@@ -74,7 +74,8 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     // Method is called during creation of the database
     @Override
     public void onCreate(SQLiteDatabase database) {
-        database.execSQL(CREATE_TABLE_SG_CARDS);
+
+        //database.execSQL(CREATE_TABLE_SG_CARDS);
     }
 
     // Method is called during an upgrade of the database,

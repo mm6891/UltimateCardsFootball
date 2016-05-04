@@ -103,30 +103,7 @@ public class StadiumActivity extends Activity implements GoogleApiClient.Connect
                 //ejecutar accion
 
             }
-        });
-
-         /*   //tamanyo de gridlayout segun pantalla en pixeles
-            Display display = getWindowManager().getDefaultDisplay();
-            Point size = new Point();
-            display.getSize(size);
-            int width = size.x;
-            int height = size.y;
-            //margen establecido en main.xml como dp
-            int margen = 10;
-            DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
-            int px = Math.round(margen * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
-            gv = (GridLayout) findViewById(R.id.glMenu);
-            int anchoBoton = (width/2)  - (px*3);
-
-            final float scale = getApplicationContext().getResources().getDisplayMetrics().density;
-
-            for (int i = 0; i < gv.getChildCount(); i++)
-            {
-                //anchura
-                Button row = (Button)gv.getChildAt(i);
-                row.setWidth(anchoBoton);
-            }*/
-
+        });        
     }
 	
 	@Override
@@ -770,7 +747,7 @@ public class StadiumActivity extends Activity implements GoogleApiClient.Connect
 	@Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.sign_in_button:
+            case R.id.btn_sign_in:
                 // Check to see the developer who's running this sample code read the instructions :-)
                 // NOTE: this check is here only because this is a sample! Don't include this
                 // check in your actual production app.
@@ -783,7 +760,7 @@ public class StadiumActivity extends Activity implements GoogleApiClient.Connect
                 findViewById(R.id.sign_in_button).setVisibility(View.GONE);
                 mGoogleApiClient.connect();
                 break;
-            case R.id.sign_out_button:
+            case R.id.btn_sign_out:
                 mSignInClicked = false;
                 Games.signOut(mGoogleApiClient);
                 if (mGoogleApiClient.isConnected()) {
@@ -792,26 +769,6 @@ public class StadiumActivity extends Activity implements GoogleApiClient.Connect
                 setViewVisibility();
                 break;
         }
-    }
-
-    private void loadPlayers(){
-
-    }
-
-        /*@Override
-        public void onBackPressed() {
-            new AlertDialog.Builder(this)
-                    .setTitle(getResources().getString(R.string.Salir))
-                    .setMessage(getResources().getString(R.string.Abandonar))
-                    .setNegativeButton(getResources().getString(R.string.NEGACION), null)
-                    .setPositiveButton(getResources().getString(R.string.AFIRMACION), new DialogInterface.OnClickListener() {
-
-                        public void onClick(DialogInterface arg0, int arg1) {
-                            Intent intent = new Intent(MainActivity.this, Password.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            intent.putExtra("EXIT", true);
-                            startActivity(intent);
-                        }
-                    }).create().show();
-        }*/
+    }    
+      
 }
