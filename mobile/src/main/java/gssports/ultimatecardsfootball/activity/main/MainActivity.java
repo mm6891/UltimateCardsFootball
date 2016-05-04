@@ -3,6 +3,7 @@ package gssports.ultimatecardsfootball.activity.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -11,7 +12,9 @@ import gssports.ultimatecardsfootball.R;
 import gssports.ultimatecardsfootball.activity.option.SelectPlayersActivity;
 
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.games.multiplayer.Invitation;
 import com.google.android.gms.games.multiplayer.OnInvitationReceivedListener;
 import com.google.android.gms.plus.Plus;
 
@@ -223,7 +226,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
                             mGoogleApiClient.connect();
                             updateUI(false);
                         }
- 
+
                     });
         }
     }
