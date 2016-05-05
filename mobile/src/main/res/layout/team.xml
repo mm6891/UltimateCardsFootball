@@ -60,7 +60,7 @@
 			android:layout_centerHorizontal="true">
 			<!-- 5 filas (0,2) , 4 columnas (0,3) , 1 columna es el portero (20) -->
 			<!-- Fila 1 -->
-			<ImageButton
+			<Button
 			android:id="@+id/imgBtn00"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
