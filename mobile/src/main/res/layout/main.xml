@@ -12,8 +12,11 @@
             android:text="nick"/>
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/lySignin"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lyCabecera"
+        >
         <com.google.android.gms.common.SignInButton
             android:id="@+id/btn_sign_in"
             android:layout_width="wrap_content"
@@ -31,12 +34,13 @@
         android:id="@+id/lyStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/lyCabecera"
+        android:layout_below="@+id/lySignin"
         android:orientation="horizontal">
         <TextView
             android:id="@+id/tvStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/status"
             />
     </LinearLayout>    
     <LinearLayout
