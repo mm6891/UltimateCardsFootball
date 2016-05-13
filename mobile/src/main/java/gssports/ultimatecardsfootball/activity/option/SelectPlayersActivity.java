@@ -20,6 +20,7 @@ import java.util.List;
 import gssports.ultimatecardsfootball.R;
 import gssports.ultimatecardsfootball.database.dao.CardDAO;
 import gssports.ultimatecardsfootball.activity.util.Constantes;
+import gssports.ultimatecardsfootball.fragment.CardFragment;
 
 /**
  * Created by manuel.molero on 08/09/2015.
@@ -55,6 +56,10 @@ public class SelectPlayersActivity extends Activity {
 	private Button imgBtn42;
 	
 	private Button btnDone;
+	Card[] porteros;
+	Card[] defensas;
+	Card[] medios;
+	Card[] delanteros;
  
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,56 +84,55 @@ public class SelectPlayersActivity extends Activity {
 		imgBtn42 = (Button) findViewById(R.id.imgBtn42);
 		
 		btnDone = (Button) findViewById(R.id.btnDone);
-		
-		//load goalkeepers
-		//cargamos el combo de porteros
-        final Spinner portero = (Spinner) findViewById(R.id.spPortero);
-
-        List<String> list = new ArrayList<String>();
+				        
         CardDAO cardDAO = new CardDAO(getApplicationContext());
-        String[] porteros = cardDAO.selectCardsByRol(Constantes.PORTERO);
-        list = Arrays.asList(porteros);
-
-        ArrayAdapter<String> dataAdapterP = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, list);
-        dataAdapterP.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        portero.setAdapter(dataAdapterP);
+        porteros = cardDAO.selectCardsByRol(Constantes.PORTERO);               		
+        defensas = cardDAO.selectCardsByRol(Constantes.DEFENSA);
+		medios = cardDAO.selectCardsByRol(Constantes.CENTROCAMPISTA);
+		delanteros = cardDAO.selectCardsByRol(Constantes.DELANTERO);
 		
-		portero.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-				imgBtn20.setText(portero.getSelectedItemPosition());                
-            }
-
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
+		//viewpagers
+		ViewPager pagerPOR = (ViewPager) findViewById(R.id.viewPagerPOR);
+        pagerPOR.setAdapter(new MyPageAdapter(getSupportFragmentManager(), porteros));		
+		ViewPager pagerDEF = (ViewPager) findViewById(R.id.viewPagerDEF);
+        pagerDEF.setAdapter(new MyPageAdapter(getSupportFragmentManager(), defensas));
+		ViewPager pagerMED = (ViewPager) findViewById(R.id.viewPagerMED);
+        pagerMED.setAdapter(new MyPageAdapter(getSupportFragmentManager(), medios));
+		ViewPager pagerDEL = (ViewPager) findViewById(R.id.viewPagerDEL);
+        pagerDEL.setAdapter(new MyPageAdapter(getSupportFragmentManager(), delanteros));
+    }		
+	
+	// actualiza cartas para el jugador x
+    public void onDoneClicked(View view) {        
+		//recuperar cartas seleccionadas
 		
-		//load deffenders
-		//cargamos el combo de defensas
-        Spinner defensa = (Spinner) findViewById(R.id.spDefensa);
-
-        List<String> listDef = new ArrayList<String>();
-
-        String[] defensas = cardDAO.selectCardsByRol(Constantes.DEFENSA);
-		listDef = Arrays.asList(defensas);
-
-        ArrayAdapter<String> dataAdapterDef = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, listDef);
-		dataAdapterDef.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        defensa.setAdapter(dataAdapterDef);
+		//validar que sean 11 cartas, minimo 3 def, 3 med, 1 del
 		
-		defensa.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
+		//almacenar nick para cada carta
+		
     }
 	
-	private void updateTeamByNick(){
-		
-	}
-		
+	  /**
+    * Custom Page adapter
+    */
+    private class MyPageAdapter extends FragmentPagerAdapter
+    {
+		Card[] cards;
+        public MyPageAdapter(FragmentManager fm, Card[] cards)
+        {
+			this.cards = cards;
+            super(fm);
+        }
+        @Override
+        public int getCount()
+        {
+            return cards.length();
+        }
+        @Override
+        public CardFragment getItem(int position)
+        {
+			String name = cards[position];
+			return CardFragment.newInstance(name);					          
+        }
+     }
 }

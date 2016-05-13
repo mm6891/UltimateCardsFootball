@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:text="numero"/>
         <TextView
-            android:id="@+id/tvDatosVarios"
+            android:id="@+id/tvDatos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="datos"/>

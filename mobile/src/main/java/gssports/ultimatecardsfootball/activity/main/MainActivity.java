@@ -62,7 +62,15 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);    	
+        setContentView(R.layout.main);  
+		
+		// Create the Google API Client with access to Plus and Games
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
+                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
+                .build();
 			
 		btnSignIn = (com.google.android.gms.common.SignInButton) findViewById(R.id.btn_sign_in);
         btnSignIn.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +87,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
         });	
 			
         btnSelectTeam = (Button) findViewById(R.id.btnSelectTeam);
+        btnSelectTeam.setOnClickListener(new View.OnClickListener() {
         btnSelectTeam.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SelectPlayersActivity.class);
