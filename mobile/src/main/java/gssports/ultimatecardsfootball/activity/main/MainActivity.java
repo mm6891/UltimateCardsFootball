@@ -16,6 +16,7 @@ import gssports.ultimatecardsfootball.activity.option.SelectPlayersActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.games.Games;
 import com.google.android.gms.games.multiplayer.Invitation;
 import com.google.android.gms.games.multiplayer.OnInvitationReceivedListener;
 import com.google.android.gms.plus.Plus;
@@ -87,7 +88,6 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
         });	
 			
         btnSelectTeam = (Button) findViewById(R.id.btnSelectTeam);
-        btnSelectTeam.setOnClickListener(new View.OnClickListener() {
         btnSelectTeam.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SelectPlayersActivity.class);
