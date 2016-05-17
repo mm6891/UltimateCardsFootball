@@ -22,7 +22,7 @@
 		<!-- 5 filas (0,4) , 8 columnas (0,7) , 2 columnas son los porteros (20 y 27)-->
         <!-- Fila 1 -->
         <ImageButton
-        android:id="@+id/imgBtn00"
+        android:id="@+id/imgBtn01"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|center"
@@ -31,7 +31,7 @@
 
         />
         <Button
-            android:id="@+id/imgBtn01"
+            android:id="@+id/imgBtn02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -39,7 +39,7 @@
             android:layout_column="2"
             />
         <Button
-            android:id="@+id/imgBtn02"
+            android:id="@+id/imgBtn03"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -47,7 +47,7 @@
             android:layout_column="3"
             />
         <Button
-            android:id="@+id/imgBtn03"
+            android:id="@+id/imgBtn04"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -55,7 +55,7 @@
             android:layout_column="4"
             />
         <Button
-            android:id="@+id/imgBtn04"
+            android:id="@+id/imgBtn05"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -63,7 +63,7 @@
             android:layout_column="5"
             />
         <Button
-            android:id="@+id/imgBtn05"
+            android:id="@+id/imgBtn06"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -72,7 +72,7 @@
             />
         <!-- Fila 2 -->
         <Button
-            android:id="@+id/imgBtn10"
+            android:id="@+id/imgBtn11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -80,7 +80,7 @@
             android:layout_column="1"
             />
         <Button
-            android:id="@+id/imgBtn11"
+            android:id="@+id/imgBtn12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -88,7 +88,7 @@
             android:layout_column="2"
             />
         <Button
-            android:id="@+id/imgBtn12"
+            android:id="@+id/imgBtn13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -96,7 +96,7 @@
             android:layout_column="3"
             />
         <Button
-            android:id="@+id/imgBtn13"
+            android:id="@+id/imgBtn14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -104,7 +104,7 @@
             android:layout_column="4"
             />
         <Button
-            android:id="@+id/imgBtn14"
+            android:id="@+id/imgBtn15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -112,7 +112,7 @@
             android:layout_column="5"
             />
         <Button
-            android:id="@+id/imgBtn15"
+            android:id="@+id/imgBtn16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -188,7 +188,7 @@
             />
         <!-- Fila 4 -->
         <Button
-            android:id="@+id/imgBtn30"
+            android:id="@+id/imgBtn31"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -196,7 +196,7 @@
             android:layout_column="1"
             />
         <Button
-            android:id="@+id/imgBtn31"
+            android:id="@+id/imgBtn32"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -204,7 +204,7 @@
             android:layout_column="2"
             />
         <Button
-            android:id="@+id/imgBtn32"
+            android:id="@+id/imgBtn33"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -212,7 +212,7 @@
             android:layout_column="3"
             />
         <Button
-            android:id="@+id/imgBtn33"
+            android:id="@+id/imgBtn34"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -220,7 +220,7 @@
             android:layout_column="4"
             />
         <Button
-            android:id="@+id/imgBtn34"
+            android:id="@+id/imgBtn35"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -228,7 +228,7 @@
             android:layout_column="5"
             />
         <Button
-            android:id="@+id/imgBtn35"
+            android:id="@+id/imgBtn36"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -237,7 +237,7 @@
             />
         <!-- Fila 5 -->
         <Button
-            android:id="@+id/imgBtn40"
+            android:id="@+id/imgBtn41"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -245,7 +245,7 @@
             android:layout_column="1"
             />
         <Button
-            android:id="@+id/imgBtn41"
+            android:id="@+id/imgBtn42"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -253,7 +253,7 @@
             android:layout_column="2"
             />
         <Button
-            android:id="@+id/imgBtn42"
+            android:id="@+id/imgBtn43"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -261,7 +261,7 @@
             android:layout_column="3"
             />
         <Button
-            android:id="@+id/imgBtn43"
+            android:id="@+id/imgBtn44"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -269,7 +269,7 @@
             android:layout_column="4"
             />
         <Button
-            android:id="@+id/imgBtn44"
+            android:id="@+id/imgBtn45"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"
@@ -277,7 +277,7 @@
             android:layout_column="5"
             />
         <Button
-            android:id="@+id/imgBtn45"
+            android:id="@+id/imgBtn46"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center"

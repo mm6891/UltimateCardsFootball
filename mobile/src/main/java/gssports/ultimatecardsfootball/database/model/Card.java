@@ -12,6 +12,7 @@ public class Card {
     Posicion posicion;
 	String player;
 	String demarcacion;
+    int posicionActual;
 
     public int get_id() {
         return _id;
@@ -67,7 +68,15 @@ public class Card {
 
     public void setDemarcacion(String demarcacion) {
         this.demarcacion = demarcacion;
-    }   
+    }
+
+    public int getPosicionActual() {
+        return posicionActual;
+    }
+
+    public void setPosicionActual(int posicionActual) {
+        this.posicionActual = posicionActual;
+    }
 
     // constructors
     public Card() {

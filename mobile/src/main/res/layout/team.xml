@@ -61,7 +61,7 @@
 			<!-- 5 filas (0,2) , 4 columnas (0,3) , 1 columna es el portero (20) -->
 			<!-- Fila 1 -->
 			<Button
-			android:id="@+id/imgBtn00"
+			android:id="@+id/imgBtn01"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="top|center"
@@ -70,7 +70,7 @@
 
 			/>
 			<Button
-				android:id="@+id/imgBtn01"
+				android:id="@+id/imgBtn02"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="top|center"
@@ -78,7 +78,7 @@
 				android:layout_column="2"
 				/>
 			<Button
-				android:id="@+id/imgBtn02"
+				android:id="@+id/imgBtn03"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="top|center"
@@ -87,7 +87,7 @@
 				/>     
 			<!-- Fila 2 -->
 			<Button
-				android:id="@+id/imgBtn10"
+				android:id="@+id/imgBtn11"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="top|center"
@@ -95,7 +95,7 @@
 				android:layout_column="1"
 				/>
 			<Button
-				android:id="@+id/imgBtn11"
+				android:id="@+id/imgBtn12"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="top|center"
@@ -103,7 +103,7 @@
 				android:layout_column="2"
 				/>
 			<Button
-				android:id="@+id/imgBtn12"
+				android:id="@+id/imgBtn13"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="top|center"
@@ -146,7 +146,7 @@
 				/>       
 			<!-- Fila 4 -->
 			<Button
-				android:id="@+id/imgBtn30"
+				android:id="@+id/imgBtn31"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="top|center"
@@ -154,7 +154,7 @@
 				android:layout_column="1"
 				/>
 			<Button
-				android:id="@+id/imgBtn31"
+				android:id="@+id/imgBtn32"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="top|center"
@@ -162,7 +162,7 @@
 				android:layout_column="2"
 				/>
 			<Button
-				android:id="@+id/imgBtn32"
+				android:id="@+id/imgBtn33"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="top|center"
@@ -171,7 +171,7 @@
 				/>        
 			<!-- Fila 5 -->
 			<Button
-				android:id="@+id/imgBtn40"
+				android:id="@+id/imgBtn41"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="top|center"
@@ -179,7 +179,7 @@
 				android:layout_column="1"
 				/>
 			<Button
-				android:id="@+id/imgBtn41"
+				android:id="@+id/imgBtn42"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="top|center"
@@ -187,7 +187,7 @@
 				android:layout_column="2"
 				/>
 			<Button
-				android:id="@+id/imgBtn42"
+				android:id="@+id/imgBtn43"
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_gravity="top|center"
@@ -201,6 +201,8 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="top|center"
 				android:text="@string/btn_hecho"
-				/>   
+			android:layout_alignParentBottom="true"
+			android:layout_alignParentLeft="true"
+			android:layout_alignParentStart="true" />
 	</RelativeLayout>
 </ScrollView>

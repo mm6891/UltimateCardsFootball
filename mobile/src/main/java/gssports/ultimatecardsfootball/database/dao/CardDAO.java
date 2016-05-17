@@ -1,5 +1,6 @@
 package gssports.ultimatecardsfootball.database.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,6 +29,7 @@ public class CardDAO {
     public final static String DBUFC_CARD_POSICION="posicion";  // posiciones del jugador/carta en el campo
     public final static String DBUFC_CARD_PLAYER="player"; // informado con nick de player si esta seleccionado en partida
 	public final static String DBUFC_CARD_DEMARCACION="demarcacion"; // demarcacion, POR, DEF, MED, DEL
+    public final static String DBUFC_CARD_POSICION_ACTUAL="posicion_actual"; // posicion actual en el campo
 		
 
     /**
@@ -41,7 +43,7 @@ public class CardDAO {
 
     public Card[] selectCards() {
         Card[] ret;
-        String[] cols = new String[] {DBUFC_CARD_ID,DBUFC_CARD_NOMBRE, DBUFC_CARD_ATRIBUTOS, DBUFC_CARD_AVANZADOS,DBUFC_CARD_POSICION,DBUFC_CARD_PLAYER,DBUFC_CARD_DEMARCACION};
+        String[] cols = new String[] {DBUFC_CARD_ID,DBUFC_CARD_NOMBRE, DBUFC_CARD_ATRIBUTOS, DBUFC_CARD_AVANZADOS,DBUFC_CARD_POSICION,DBUFC_CARD_PLAYER,DBUFC_CARD_DEMARCACION,DBUFC_CARD_POSICION_ACTUAL};
         Cursor mCursor = database.query(true, CARD_TABLE,cols,null
                 , null, null, null, null, null);
         ret = new Card[mCursor.getCount()];
@@ -68,8 +70,9 @@ public class CardDAO {
             cardTemp.setPosicion(posicion);
 			
 			cardTemp.setPlayer(mCursor.getString(5));            
-			cardTemp.setDemarcacion(mCursor.getString(6)); 
-			
+			cardTemp.setDemarcacion(mCursor.getString(6));
+            cardTemp.setPosicionActual(mCursor.getInt(7));
+
             ret[i] = cardTemp;
             i++;
             mCursor.moveToNext();
@@ -79,7 +82,7 @@ public class CardDAO {
 
     public Card[] selectCardsByPlayer(String playerNick) {
         Card[] ret;
-        String[] cols = new String[] {DBUFC_CARD_ID,DBUFC_CARD_NOMBRE, DBUFC_CARD_ATRIBUTOS, DBUFC_CARD_AVANZADOS,DBUFC_CARD_POSICION,DBUFC_CARD_PLAYER,DBUFC_CARD_DEMARCACION};
+        String[] cols = new String[] {DBUFC_CARD_ID,DBUFC_CARD_NOMBRE, DBUFC_CARD_ATRIBUTOS, DBUFC_CARD_AVANZADOS,DBUFC_CARD_POSICION,DBUFC_CARD_PLAYER,DBUFC_CARD_DEMARCACION,DBUFC_CARD_POSICION_ACTUAL};
         String[] args = new String[]{playerNick};
         Cursor mCursor = database.query(true, CARD_TABLE,cols,DBUFC_CARD_PLAYER + "=?"
                 , args, null, null, null, null);
@@ -107,7 +110,8 @@ public class CardDAO {
             cardTemp.setPosicion(posicion);
 			
 			cardTemp.setPlayer(mCursor.getString(5));            
-			cardTemp.setDemarcacion(mCursor.getString(6)); 
+			cardTemp.setDemarcacion(mCursor.getString(6));
+            cardTemp.setPosicionActual(mCursor.getInt(7));
 			
             ret[i] = cardTemp;
             i++;
@@ -116,7 +120,7 @@ public class CardDAO {
         return ret; // iterate to get each value.
     }		
 
-    public boolean updateCardsByPlayer(String playerNick, Card[] cards) {               
+    public boolean updateCardsByPlayer(String playerNick,Card[] cards) {
         String[] args = new String[cards.length];
 		for(int i = 0; i < cards.length ; i++){
 			Card temp = cards[i];
@@ -125,7 +129,7 @@ public class CardDAO {
         
 		//Establecemos los campos-valores a actualizar
         ContentValues valores = new ContentValues();
-        valores.put(DBUFC_CARD_PLAYER,playerNick);        
+        valores.put(DBUFC_CARD_PLAYER,playerNick);
 
         int rows = database.update(CARD_TABLE,valores,DBUFC_CARD_ID + " in (?)",args);
         return rows > 0;

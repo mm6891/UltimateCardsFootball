@@ -55,7 +55,7 @@ public class StadiumActivity extends Activity implements GoogleApiClient.Connect
     private TurnBasedMatch mTurnBasedMatch;
 		
     //botonera terreno de juego
-    private ImageButton btn00;
+    private ImageButton imgBtn20;
     private GridLayout gvStadium;
 	
 	private AlertDialog mAlertDialog;
@@ -78,6 +78,10 @@ public class StadiumActivity extends Activity implements GoogleApiClient.Connect
     // Do not retain references to match data once you have
     // taken an action on the match, such as takeTurn()
     public StadiumTurn mTurnData;
+	
+	CardDAO daoCards;
+	Cards[] cardsJugador;
+	Cards[] cardsContrincante;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,10 +95,13 @@ public class StadiumActivity extends Activity implements GoogleApiClient.Connect
                 .addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
                 .build();
+			
+		daoCards = new CardDAO(getApplicationContext());
+		cardsJugador = daoCards.selectCardsByPlayer(Games.Players.getCurrentPlayerId(mGoogleApiClient));
 		
         //casilla 00
-        btn00 = (ImageButton) findViewById(R.id.imgBtn00);
-        btn00.setOnClickListener(new View.OnClickListener() {
+        imgBtn20 = (ImageButton) findViewById(R.id.imgBtn20);
+        imgBtn20.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {                
                 //se comprueba si lleva el balon
 
@@ -748,33 +755,6 @@ public class StadiumActivity extends Activity implements GoogleApiClient.Connect
         }
 
         return false;
-    }
-	
-	@Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_sign_in:
-                // Check to see the developer who's running this sample code read the instructions :-)
-                // NOTE: this check is here only because this is a sample! Don't include this
-                // check in your actual production app.
-               /* if (!BaseGameUtils.verifySampleSetup(this, R.string.app_id)) {
-                    Log.w(TAG, "*** Warning: setup problems detected. Sign in may not work!");
-                }*/
-
-                mSignInClicked = true;
-                mTurnBasedMatch = null;
-                //findViewById(R.id.sign_in_button).setVisibility(View.GONE);
-                mGoogleApiClient.connect();
-                break;
-            case R.id.btn_sign_out:
-                mSignInClicked = false;
-                Games.signOut(mGoogleApiClient);
-                if (mGoogleApiClient.isConnected()) {
-                    mGoogleApiClient.disconnect();
-                }
-                setViewVisibility();
-                break;
-        }
-    }    
+    }		   
       
 }

@@ -14,7 +14,7 @@ import gssports.ultimatecardsfootball.R;
 import gssports.ultimatecardsfootball.activity.option.SelectPlayersActivity;
 
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.multiplayer.Invitation;
@@ -31,6 +31,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 
     // Client used to interact with Google APIs
     private GoogleApiClient mGoogleApiClient;
+    private GoogleApiAvailability googleAPI;
 	
 	// Are we currently resolving a connection failure?
     private boolean mResolvingConnectionFailure = false;
@@ -72,6 +73,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
                 .addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES)
                 .build();
+        googleAPI = GoogleApiAvailability.getInstance();
 			
 		btnSignIn = (com.google.android.gms.common.SignInButton) findViewById(R.id.btn_sign_in);
         btnSignIn.setOnClickListener(new View.OnClickListener() {
@@ -91,6 +93,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
         btnSelectTeam.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SelectPlayersActivity.class);
+                intent.putExtra("nick", Games.Players.getCurrentPlayerId(mGoogleApiClient));
                 startActivity(intent);
                 finish();
             }
@@ -127,8 +130,7 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
     @Override
     public void onConnectionFailed(ConnectionResult result) {
         if (!result.hasResolution()) {
-            GooglePlayServicesUtil.getErrorDialog(result.getErrorCode(), this,
-                    0).show();
+            googleAPI.getErrorDialog(this,result.getErrorCode(),0).show();
             return;
         }
  
@@ -179,13 +181,11 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
         if (isSignedIn) {
             btnSignIn.setVisibility(View.GONE);
             btnSignOut.setVisibility(View.VISIBLE);
-            //btnRevokeAccess.setVisibility(View.VISIBLE);
-            //llProfileLayout.setVisibility(View.VISIBLE);
+            btnSelectTeam.setVisibility(View.VISIBLE);
         } else {
             btnSignIn.setVisibility(View.VISIBLE);
             btnSignOut.setVisibility(View.GONE);
-            //btnRevokeAccess.setVisibility(View.GONE);
-            //llProfileLayout.setVisibility(View.GONE);
+            btnSelectTeam.setVisibility(View.GONE);
         }
     }   
  
@@ -217,31 +217,12 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
      * */
     private void signOutFromGplus() {
         if (mGoogleApiClient.isConnected()) {
-            Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
+            mGoogleApiClient.clearDefaultAccountAndReconnect();
             mGoogleApiClient.disconnect();
-            mGoogleApiClient.connect();
+            //mGoogleApiClient.connect();
             updateUI(false);
         }
     }
- 
-    /**
-     * Revoking access from google
-     * */
-    /*private void revokeGplusAccess() {
-        if (mGoogleApiClient.isConnected()) {
-            Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
-            Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient)
-                    .setResultCallback(new ResultCallback<AsyncTask.Status>() {
-                        @Override
-                        public void onResult(Status arg0) {
-                            Log.e(TAG, "User access revoked!");
-                            mGoogleApiClient.connect();
-                            updateUI(false);
-                        }
-
-                    });
-        }
-    }*/
 	
 	// Handle notification events.
     @Override

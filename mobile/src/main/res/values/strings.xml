@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Ultimate Cards Football</string>
+    <string name="btn_hecho">Done</string>
 	<string name="btn_logout_from_google">Logout from Google</string>	
     <string name="btn_revoke_access">Revoke Access</string>
-	<string name="btn_hecho">Done</string>
-    <string name="status">status</string>
+    <string name="btn_select_team">Selecciona jugadores</string>
     <string name="nick">nick</string>
+    <string name="status">status</string>
 </resources>

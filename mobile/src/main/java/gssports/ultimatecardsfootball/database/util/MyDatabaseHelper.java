@@ -48,13 +48,14 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 					"F integer," +
 					"D integer," +
                     ");";
+		
 	private static final String CREATE_TABLE_DBUFC_POSICION =
             "create table DBUFC_POSICION( _id integer primary key," +                   												
-					"POS00 integer,POS01 integer, POS02 integer, POS03 integer, POS04 integer,POS05 integer," +					
-					"POS10 integer, POS11 integer, POS12 integer, POS13 integer,POS14 integer,POS15 integer," +					
+					"POS01 integer,POS02 integer, POS03 integer, POS04 integer, POS05 integer,POS06 integer," +					
+					"POS11 integer, POS12 integer, POS13 integer, POS14 integer,POS15 integer,POS16 integer," +					
 	"POS20 integer, POS21 integer, POS22 integer, POS23 integer,POS24 integer,POS25 integer,POS26 integer,POS27 integer," +					
-					"POS30 integer, POS31 integer, POS32 integer, POS33 integer,POS34 integer,POS35 integer," +
-					"POS40 integer, POS41 integer, POS42 integer, POS43 integer,POS44 integer,POS45 integer," +												
+					"POS31 integer, POS32 integer, POS33 integer, POS34 integer,POS35 integer,POS36 integer," +
+					"POS41 integer, POS42 integer, POS43 integer, POS44 integer,POS45 integer,POS46 integer," +												
                     ");";
 	private static final String CREATE_TABLE_DBUFC_FORMACION =
             "create table DBUFC_FORMACION( _id integer primary key," +    
