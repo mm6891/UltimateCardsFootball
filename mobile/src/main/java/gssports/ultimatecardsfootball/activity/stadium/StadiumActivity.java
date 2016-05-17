@@ -2,15 +2,22 @@ package gssports.ultimatecardsfootball.activity.stadium;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.GridLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 import gssports.ultimatecardsfootball.R;
+import gssports.ultimatecardsfootball.database.dao.CardDAO;
+import gssports.ultimatecardsfootball.database.model.Card;
+import gssports.ultimatecardsfootball.fragment.CardFragment;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -34,8 +41,8 @@ import java.util.ArrayList;
  * Created by manuel.molero on 08/09/2015.
  */
 public class StadiumActivity extends Activity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
-        OnInvitationReceivedListener, OnTurnBasedMatchUpdateReceivedListener,
-        View.OnClickListener{
+        OnInvitationReceivedListener, OnTurnBasedMatchUpdateReceivedListener
+        {
 		
 	public static final String TAG = "StadiumActivity";
 
@@ -80,14 +87,14 @@ public class StadiumActivity extends Activity implements GoogleApiClient.Connect
     public StadiumTurn mTurnData;
 	
 	CardDAO daoCards;
-	Cards[] cardsJugador;
-	Cards[] cardsContrincante;
+	Card[] cardsJugador;
+	Card[] cardsContrincante;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.stadium);
-
+        GridLayout gvStadium = (GridLayout) findViewById(R.id.glStadium);
 		// Create the Google API Client with access to Plus and Games
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -98,24 +105,32 @@ public class StadiumActivity extends Activity implements GoogleApiClient.Connect
 			
 		daoCards = new CardDAO(getApplicationContext());
 		cardsJugador = daoCards.selectCardsByPlayer(Games.Players.getCurrentPlayerId(mGoogleApiClient));
-		
-        //casilla 00
-        imgBtn20 = (ImageButton) findViewById(R.id.imgBtn20);
-        imgBtn20.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {                
-                //se comprueba si lleva el balon
-
-                //si lleva el balon se miran sus valores, y mostrar sus opciones en modal
-				
-				//si no lleva el balon, se muestran opciones de movimiento
-
-                //esperar respuesta de usuario y mostrar casillas posibles a accion respondida
-
-                //ejecutar accion
-
-            }
-        });        
     }
+	
+	private void populateGrid(Activity activity) {
+		//RelativeLayout gridParent = (RelativeLayout) mParentActivity.findViewById(R.id.rlStadium);
+		RelativeLayout gridParent = (RelativeLayout) findViewById(R.id.rlStadium);
+		gvStadium = (GridLayout) gridParent.findViewById(R.id.glStadium);
+		int nColumns = gvStadium.getColumnCount();
+		//mAdapter = new MyAdapter(mContext, this, mResolver); //This is how I keep track of the various fragments depending on my app's state
+		//int nCards = mAdapter.getNumberOfCards();
+		int nCards = cardsJugador.length;
+		//FragmentManager fragmentManager = mParentActivity.getSupportFragmentManager();		
+		FragmentTransaction fragmentTransaction = activity.getFragmentManager().beginTransaction();
+		for (int i = 0; i < nCards; i++) {
+			int posAct = cardsJugador[i].getPosicionActual();
+			String name = cardsJugador[i].getNombre();			
+			CardFragment fragmentCard = CardFragment.newInstance(name);
+			GridLayout.LayoutParams layoutParams = (GridLayout.LayoutParams) gvStadium.getLayoutParams();
+			//layoutParams.
+			
+			//fragmentCard.setLayoutParams(layoutParams);
+			
+			fragmentTransaction.add(gvStadium.getId(), fragmentCard, String.valueOf(posAct));			
+		}
+		fragmentTransaction.commit();
+		//mPopulated = true;
+	}
 	
 	@Override
     protected void onStart() {
