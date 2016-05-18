@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import gssports.ultimatecardsfootball.R;
 import gssports.ultimatecardsfootball.activity.option.SelectPlayersActivity;
+import gssports.ultimatecardsfootball.activity.stadium.StadiumActivity;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -51,15 +52,18 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
 	
 	// For our intents
     private static final int RC_SIGN_IN = 9001;
-    final static int RC_SELECT_PLAYERS = 10000;
-    final static int RC_LOOK_AT_MATCHES = 10001;
+    //final static int RC_LOOK_AT_MATCHES = 10001;
+
+    private static final int RC_SELECT_CARDS = 10001;
+    private static final int RC_MATCH = 11001;
   
     private TextView tvNick;
     private TextView tvStatus;
 	
 	private Button btnSelectTeam;  
     private com.google.android.gms.common.SignInButton btnSignIn;
-	private Button btnSignOut;  
+	private Button btnSignOut;
+    private Button btn_start_match;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,10 +98,19 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SelectPlayersActivity.class);
                 intent.putExtra("nick", Games.Players.getCurrentPlayerId(mGoogleApiClient));
-                startActivity(intent);
+                startActivityForResult(intent, RC_SELECT_CARDS);
                 finish();
             }
-        });		       
+        });
+        btn_start_match = (Button) findViewById(R.id.btnStartMatch);
+        btn_start_match.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, StadiumActivity.class);
+                //intent.putExtra("nick", Games.Players.getCurrentPlayerId(mGoogleApiClient));
+                startActivityForResult(intent, RC_MATCH);
+                finish();
+            }
+        });
     }      
 	
 	protected void onStart() {
@@ -160,6 +173,11 @@ public class MainActivity extends Activity implements GoogleApiClient.Connection
  
             if (!mGoogleApiClient.isConnecting()) {
                 mGoogleApiClient.connect();
+            }
+        }
+        if (requestCode == RC_SELECT_CARDS) {
+            if (responseCode != RESULT_OK) {
+                btn_start_match.setVisibility(View.VISIBLE);
             }
         }
     }

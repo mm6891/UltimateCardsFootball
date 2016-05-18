@@ -31,5 +31,15 @@
 			android:layout_column="1" >
         </fragment>        		       -->
     </GridLayout>
+    <Button
+        android:id="@+id/btnDoneStadium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center"
+        android:text="@string/btn_hecho"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onDoneStadiumClicked" />
 </RelativeLayout>
 </ScrollView>

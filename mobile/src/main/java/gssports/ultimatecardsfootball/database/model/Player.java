@@ -1,5 +1,4 @@
 package gssports.ultimatecardsfootball.database.model;
-package gssports.ultimatecardsfootball.database.model.Card;
 
 /**
  * Created by manuel.molero on 13/05/2016.

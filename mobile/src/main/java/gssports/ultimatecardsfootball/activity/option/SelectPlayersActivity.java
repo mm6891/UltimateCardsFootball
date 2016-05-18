@@ -2,6 +2,7 @@ package gssports.ultimatecardsfootball.activity.option;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -76,52 +77,52 @@ public class SelectPlayersActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.team);		
 		
-		imgBtn21 = (Button) findViewById(R.id.imgBtn20);
-		imgBtn21.setTag(21);
-		imgBtn21.setOnDragListener(new MyDragListener());
-		imgBtn01 = (Button) findViewById(R.id.imgBtn00);
+		imgBtn20 = (Button) findViewById(R.id.imgBtn20);
+		imgBtn20.setTag(20);
+		imgBtn20.setOnDragListener(new MyDragListener());
+		imgBtn01 = (Button) findViewById(R.id.imgBtn01);
 		imgBtn01.setTag(01);
 		imgBtn01.setOnDragListener(new MyDragListener());
-		imgBtn11 = (Button) findViewById(R.id.imgBtn10);
+		imgBtn11 = (Button) findViewById(R.id.imgBtn11);
 		imgBtn11.setTag(11);
 		imgBtn11.setOnDragListener(new MyDragListener());
 		imgBtn21 = (Button) findViewById(R.id.imgBtn21);
 		imgBtn21.setTag(21);
 		imgBtn21.setOnDragListener(new MyDragListener());
-		imgBtn31 = (Button) findViewById(R.id.imgBtn30);
+		imgBtn31 = (Button) findViewById(R.id.imgBtn31);
 		imgBtn31.setTag(31);
 		imgBtn31.setOnDragListener(new MyDragListener());
-		imgBtn41 = (Button) findViewById(R.id.imgBtn40);
+		imgBtn41 = (Button) findViewById(R.id.imgBtn41);
 		imgBtn41.setTag(41);
 		imgBtn41.setOnDragListener(new MyDragListener());
-		imgBtn02 = (Button) findViewById(R.id.imgBtn01);
+		imgBtn02 = (Button) findViewById(R.id.imgBtn02);
 		imgBtn02.setTag(02);
 		imgBtn02.setOnDragListener(new MyDragListener());
-		imgBtn12 = (Button) findViewById(R.id.imgBtn11);
+		imgBtn12 = (Button) findViewById(R.id.imgBtn12);
 		imgBtn12.setTag(12);
 		imgBtn12.setOnDragListener(new MyDragListener());
 		imgBtn22 = (Button) findViewById(R.id.imgBtn22);
 		imgBtn22.setTag(22);
 		imgBtn22.setOnDragListener(new MyDragListener());
-		imgBtn32 = (Button) findViewById(R.id.imgBtn31);
+		imgBtn32 = (Button) findViewById(R.id.imgBtn32);
 		imgBtn32.setTag(32);
 		imgBtn32.setOnDragListener(new MyDragListener());
-		imgBtn42 = (Button) findViewById(R.id.imgBtn41);
+		imgBtn42 = (Button) findViewById(R.id.imgBtn42);
 		imgBtn42.setTag(42);
 		imgBtn42.setOnDragListener(new MyDragListener());
-		imgBtn03 = (Button) findViewById(R.id.imgBtn02);
+		imgBtn03 = (Button) findViewById(R.id.imgBtn03);
 		imgBtn03.setTag(03);
 		imgBtn03.setOnDragListener(new MyDragListener());
-		imgBtn13 = (Button) findViewById(R.id.imgBtn12);
+		imgBtn13 = (Button) findViewById(R.id.imgBtn13);
 		imgBtn13.setTag(13);
 		imgBtn13.setOnDragListener(new MyDragListener());
 		imgBtn23 = (Button) findViewById(R.id.imgBtn23);
 		imgBtn23.setTag(23);
 		imgBtn23.setOnDragListener(new MyDragListener());
-		imgBtn33 = (Button) findViewById(R.id.imgBtn32);
+		imgBtn33 = (Button) findViewById(R.id.imgBtn33);
 		imgBtn33.setTag(33);
 		imgBtn33.setOnDragListener(new MyDragListener());
-		imgBtn43 = (Button) findViewById(R.id.imgBtn42);
+		imgBtn43 = (Button) findViewById(R.id.imgBtn43);
 		imgBtn43.setTag(43);
 		imgBtn43.setOnDragListener(new MyDragListener());
 		
@@ -243,8 +244,8 @@ public class SelectPlayersActivity extends FragmentActivity {
         @Override
         public CardFragment getItem(int position)
         {
-			String name = cards[position].getNombre();
-			return CardFragment.newInstance(name);					          
+			String idCard = String.valueOf(cards[position].get_id());
+			return CardFragment.newInstance(idCard);
         }
 
 		public Card getCard(int position)
@@ -301,7 +302,7 @@ public class SelectPlayersActivity extends FragmentActivity {
 			  Card seleccionada = myPageAdapter.getCard(currentPage);
 			  seleccionada.setPosicionActual((Integer)v.getTag());
 			  seleccionadas.add(seleccionada);
-			  button.setText(item.getArguments().getString("name"));
+			  button.setText(seleccionada.getNombre());
 			break;
 		  case DragEvent.ACTION_DRAG_ENDED:
 			//v.setBackgroundDrawable(normalShape);
