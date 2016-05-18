@@ -88,7 +88,7 @@ public class StadiumActivity extends FragmentActivity implements GoogleApiClient
 	
 	CardDAO daoCards;
 	Card[] cardsJugador;
-	Card[] cardsContrincante;
+	Card[] cardsEspejo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

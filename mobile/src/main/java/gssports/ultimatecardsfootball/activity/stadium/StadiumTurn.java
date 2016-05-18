@@ -41,7 +41,7 @@ public class StadiumTurn {
         return st.getBytes(Charset.forName("UTF-8"));
     }
 
-    // Creates a new instance of SkeletonTurn.
+    // Creates a new instance of StadiumTurn.
     static public StadiumTurn unpersist(byte[] byteArray) {
 
         if (byteArray == null) {

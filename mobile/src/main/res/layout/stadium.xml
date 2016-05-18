@@ -2,44 +2,81 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent" >
-<RelativeLayout
-	android:id="@+id/rlStadium"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    tools:context=".StadiumActivity"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <GridLayout
-        android:id="@+id/glStadium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|center"
-        android:columnCount="8"
-        android:rowCount="5"
-        android:baselineAligned="false"
+    <RelativeLayout
+        android:id="@+id/rlStadium"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
         android:orientation="horizontal"
-        android:layout_centerHorizontal="true">		
-        <!-- 
-		<fragment
-            android:id="@+id/card01"
+        tools:context=".StadiumActivity"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <GridLayout
+            android:id="@+id/glStadium"
             android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_gravity="top|center"
-            class="gssports.ultimatecardsfootball.fragment.CardFragment"
-            android:layout_row="0"
-			android:layout_column="1" >
-        </fragment>        		       -->
-    </GridLayout>
-    <Button
-        android:id="@+id/btnDoneStadium"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|center"
-        android:text="@string/btn_hecho"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="onDoneStadiumClicked" />
-</RelativeLayout>
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:columnCount="8"
+            android:rowCount="5"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:layout_centerHorizontal="true">
+            <!--
+            <fragment
+                android:id="@+id/card01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center"
+                class="gssports.ultimatecardsfootball.fragment.CardFragment"
+                android:layout_row="0"
+                android:layout_column="1" >
+            </fragment>        		       -->
+        </GridLayout>
+        <Button
+            android:id="@+id/btnDoneStadium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:text="@string/btn_hecho"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:onClick="onDoneStadiumClicked" />
+        <Button
+            android:id="@+id/sign_out_button"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_out" />
+        <Button
+            android:id="@+id/startMatchButton"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:onClick="onStartMatchClicked"
+            android:text="@string/start_match" />
+
+        <Button
+            android:id="@+id/checkGamesButton"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:onClick="onCheckGamesClicked"
+            android:text="@string/check_games" />
+        <Button
+            android:id="@+id/quickMatchButon"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:onClick="onQuickMatchClicked"
+            android:text="@string/quick_match" />
+        <RelativeLayout
+            android:id="@+id/progressLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#AAAAAAAA"
+            android:visibility="gone" >
+            <ProgressBar
+                android:id="@+id/progress_dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+    </RelativeLayout>
 </ScrollView>
