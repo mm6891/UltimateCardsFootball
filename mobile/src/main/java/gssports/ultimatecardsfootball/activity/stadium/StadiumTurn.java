@@ -2,6 +2,7 @@ package gssports.ultimatecardsfootball.activity.stadium;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
+import java.util.HashMap;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -15,8 +16,12 @@ public class StadiumTurn {
 
     public static final String TAG = "EBTurn";
 
-    public String data = "";
+    public String data = "";	
     public int turnCounter;
+    //true : ataque, false: defensa
+    public boolean turnoAtaque;
+    //idcard,position
+    //public HashMap<Integer,String> movimientos;
 
     public StadiumTurn() {
     }
@@ -70,6 +75,10 @@ public class StadiumTurn {
             if (obj.has("turnCounter")) {
                 retVal.turnCounter = obj.getInt("turnCounter");
             }
+           /* if (obj.has("movimientos")) {
+                Object movimientosObj = obj.get("movimientos");
+
+            }*/
 
         } catch (JSONException e) {
             // TODO Auto-generated catch block

@@ -13,6 +13,7 @@ public class Card {
 	String player;
 	String demarcacion;
     int posicionActual;
+    boolean tieneBalon;
 
     public int get_id() {
         return _id;
@@ -76,6 +77,14 @@ public class Card {
 
     public void setPosicionActual(int posicionActual) {
         this.posicionActual = posicionActual;
+    }
+
+    public boolean isTieneBalon() {
+        return tieneBalon;
+    }
+
+    public void setTieneBalon(boolean tieneBalon) {
+        this.tieneBalon = tieneBalon;
     }
 
     // constructors

@@ -6,11 +6,11 @@ package gssports.ultimatecardsfootball.database.model;
 public class Posicion {
 
     int _id;
-    int POS00;int POS01;int POS02;int POS03;int POS04;int POS05;int POS06;int POS07;int POS08;int POS09;int POS10;
-	int POS11;int POS12;int POS13;int POS14;int POS15;int POS16;int POS17;int POS18;int POS19;int POS20;int POS21;
-	int POS22;int POS23;int POS24;int POS25;int POS26;int POS27;int POS28;int POS29;int POS30;int POS31;int POS32;
-	int POS33;int POS34;int POS35;int POS36;int POS37;int POS38;int POS39;int POS40;int POS41;int POS42;int POS43;
-	int POS44;int POS45;
+    int POS01;int POS02;int POS03;int POS04;int POS05;int POS06;
+	int POS11;int POS12;int POS13;int POS14;int POS15;int POS16;
+    int POS20;int POS21;int POS22;int POS23;int POS24;int POS25;int POS26;int POS27;
+    int POS31;int POS32;int POS33;int POS34;int POS35;int POS36;
+    int POS41;int POS42;int POS43;int POS44;int POS45;int POS46;
 	
 	 public int get_id() {
         return _id;
@@ -18,14 +18,6 @@ public class Posicion {
 
     public void set_id(int _id) {
         this._id = _id;
-    }
-
-    public int getPOS00() {
-        return POS00;
-    }
-
-    public void setPOS00(int POS00) {
-        this.POS00 = POS00;
     }
 
     public int getPOS01() {
@@ -76,38 +68,6 @@ public class Posicion {
         this.POS06 = POS06;
     }
 
-    public int getPOS07() {
-        return POS07;
-    }
-
-    public void setPOS07(int POS07) {
-        this.POS07 = POS07;
-    }
-
-    public int getPOS08() {
-        return POS08;
-    }
-
-    public void setPOS08(int POS08) {
-        this.POS08 = POS08;
-    }
-
-    public int getPOS09() {
-        return POS09;
-    }
-
-    public void setPOS09(int POS09) {
-        this.POS09 = POS09;
-    }
-
-    public int getPOS10() {
-        return POS10;
-    }
-
-    public void setPOS10(int POS10) {
-        this.POS10 = POS10;
-    }
-
     public int getPOS11() {
         return POS11;
     }
@@ -154,30 +114,6 @@ public class Posicion {
 
     public void setPOS16(int POS16) {
         this.POS16 = POS16;
-    }
-
-    public int getPOS17() {
-        return POS17;
-    }
-
-    public void setPOS17(int POS17) {
-        this.POS17 = POS17;
-    }
-
-    public int getPOS18() {
-        return POS18;
-    }
-
-    public void setPOS18(int POS18) {
-        this.POS18 = POS18;
-    }
-
-    public int getPOS19() {
-        return POS19;
-    }
-
-    public void setPOS19(int POS19) {
-        this.POS19 = POS19;
     }
 
     public int getPOS20() {
@@ -244,30 +180,6 @@ public class Posicion {
         this.POS27 = POS27;
     }
 
-    public int getPOS28() {
-        return POS28;
-    }
-
-    public void setPOS28(int POS28) {
-        this.POS28 = POS28;
-    }
-
-    public int getPOS29() {
-        return POS29;
-    }
-
-    public void setPOS29(int POS29) {
-        this.POS29 = POS29;
-    }
-
-    public int getPOS30() {
-        return POS30;
-    }
-
-    public void setPOS30(int POS30) {
-        this.POS30 = POS30;
-    }
-
     public int getPOS31() {
         return POS31;
     }
@@ -316,38 +228,6 @@ public class Posicion {
         this.POS36 = POS36;
     }
 
-    public int getPOS37() {
-        return POS37;
-    }
-
-    public void setPOS37(int POS37) {
-        this.POS37 = POS37;
-    }
-
-    public int getPOS38() {
-        return POS38;
-    }
-
-    public void setPOS38(int POS38) {
-        this.POS38 = POS38;
-    }
-
-    public int getPOS39() {
-        return POS39;
-    }
-
-    public void setPOS39(int POS39) {
-        this.POS39 = POS39;
-    }
-
-    public int getPOS40() {
-        return POS40;
-    }
-
-    public void setPOS40(int POS40) {
-        this.POS40 = POS40;
-    }
-
     public int getPOS41() {
         return POS41;
     }
@@ -386,6 +266,14 @@ public class Posicion {
 
     public void setPOS45(int POS45) {
         this.POS45 = POS45;
+    }
+
+    public int getPOS46() {
+        return POS46;
+    }
+
+    public void setPOS46(int POS46) {
+        this.POS46 = POS46;
     }
 
     public Posicion(){

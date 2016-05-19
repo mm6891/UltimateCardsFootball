@@ -15,5 +15,35 @@ public class Constantes {
 	public static final String PACKAGE_CLASS_AVANZADOS = "gssports.ultimatecardsfootball.database.model.Avanzados";	
    
     public Constantes() {
-    }   
+    }
+
+	public enum AtaqueMovimientosSinDado{
+		PaseDirecto,
+		MovimientoCasillaAdyacente,
+		Intercambio,
+		IntercambioConBalon
+	}
+
+	public enum AtaqueMovimientosConBalon{
+		PaseCorto,
+		PaseLargo,
+		PaseAlto,
+		Regate,
+		DisparoLejano,
+		RemateCabeza,
+		Remate,
+		LanzamientoFalta,
+		RegateVelocidad
+	}
+
+	public enum AtaqueMovimientosSinBalon{
+		Desmarque
+	}
+
+	public enum DefensaMovimientos{
+		Robo,
+		Anticipacion,
+		Falta,
+		RemateCabeza
+	}
 }

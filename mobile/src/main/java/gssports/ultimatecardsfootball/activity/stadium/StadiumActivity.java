@@ -3,6 +3,7 @@ package gssports.ultimatecardsfootball.activity.stadium;
 import android.app.Activity;
 import android.app.AlertDialog;
 
+import android.graphics.Color;
 import android.support.v4.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -110,57 +111,104 @@ public class StadiumActivity extends FragmentActivity implements GoogleApiClient
     }
 	
 	private void populateGrid() {
-		GridLayout gridLayout = (GridLayout)findViewById(R.id.glStadium);
+        runOnUiThread(new Runnable(){
+            public void run() {
+                showSpinner();
+                GridLayout gridLayout = (GridLayout)findViewById(R.id.glStadium);
+                gridLayout.removeAllViews();
+                int total = gridLayout.getColumnCount()*gridLayout.getRowCount();
+                int column = gridLayout.getColumnCount();
+                int nCards = cardsJugador.length;
 
-		gridLayout.removeAllViews();
+                boolean esCarta = false;
 
-		int total = gridLayout.getColumnCount()*gridLayout.getRowCount();
-		int column = gridLayout.getColumnCount();
-		int nCards = cardsJugador.length;
-		
-		boolean esCarta = false;
-		
-		for(int i =0, c = 0, r = 0; i < total; i++, c++)
-		{
-			esCarta = false;
-			if(c == column)
-			{
-				c = 0;
-				r++;
-			}
+                for(int i =0, c = 0, r = 0; i < total; i++, c++)
+                {
+                    esCarta = false;
+                    if(c == column)
+                    {
+                        c = 0;
+                        r++;
+                    }
 
-			FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-			for (int j = 0; j < nCards; j++) {
-				String posAct = String.valueOf(cardsJugador[j].getPosicionActual());
-				String rowAct = posAct.substring(0,1);
-				String colAct = posAct.substring(1,2);
-				String idCard = String.valueOf(cardsJugador[j].get_id());
+                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    for (int j = 0; j < nCards; j++) {
+                        String posAct = String.valueOf(cardsJugador[j].getPosicionActual());
+                        String rowAct = posAct.substring(0,1);
+                        String colAct = posAct.substring(1,2);
+                        String idCard = String.valueOf(cardsJugador[j].get_id());
 
-				if(Integer.valueOf(rowAct).equals(Integer.valueOf(r)) && 
-										Integer.valueOf(colAct).equals(Integer.valueOf(c))){
-					esCarta = true;
-					CardFragment fragmentCard = CardFragment.newInstance(idCard,String.valueOf(c),String.valueOf(r));
-					fragmentTransaction.add(gvStadium.getId(), fragmentCard, String.valueOf(posAct));
-                    fragmentTransaction.commit();
-                    break;
-				}
-			}
-			if(!esCarta){
-				CardFragment fragmentCard = CardFragment.newInstance("0",String.valueOf(c),String.valueOf(r));
-                String posNew = String.valueOf(r).concat(String.valueOf(c));
-				fragmentTransaction.add(gvStadium.getId(), fragmentCard, posNew);
-                fragmentTransaction.commit();
-			}
-		}				
+                        if(Integer.valueOf(rowAct).equals(Integer.valueOf(r)) &&
+                                Integer.valueOf(colAct).equals(Integer.valueOf(c))){
+                            esCarta = true;
+                            CardFragment fragmentCard = CardFragment.newInstance(idCard,String.valueOf(c),String.valueOf(r));
+                            fragmentTransaction.add(gvStadium.getId(), fragmentCard, String.valueOf(posAct));
+                            fragmentTransaction.commit();
+                            break;
+                        }
+                    }
+                    if(!esCarta){
+                        CardFragment fragmentCard = CardFragment.newInstance("0",String.valueOf(c),String.valueOf(r));
+                        String posNew = String.valueOf(r).concat(String.valueOf(c));
+                        fragmentTransaction.add(gvStadium.getId(), fragmentCard, posNew);
+                        fragmentTransaction.commit();
+                    }
+                }
+                try {
+                    dismissSpinner();
+                } catch (final Exception ex) {
+                    Log.i("---","Exception in thread");
+                }
+            }
+        });
 	}
 
-            public void onItemClick(AdapterView parent,
-                                    View v, int position, long id)
-            {
-                int row_no=position/5;
-                int col_no=position%8;
-                //Card seleccionada =
+    public void onItemClick(AdapterView parent,View v, int position, long id)
+    {
+        final View toUpdate = v;
+        if(isDoingTurn) {
+            int row_no = position / 5;
+            int col_no = position % 8;
+
+            for (Card card : cardsJugador) {
+                String posAct = String.valueOf(card.getPosicionActual());
+                int rowCard = Integer.valueOf(posAct.substring(0, 1)).intValue();
+                int colCard = Integer.valueOf(posAct.substring(1, 2)).intValue();
+                if (rowCard == row_no && colCard == col_no) {
+                    //seleccionar carta
+                    runOnUiThread(new Runnable(){
+                        @Override
+                        public void run() {
+                            showSpinner();
+                            toUpdate.setBackgroundColor(Color.TRANSPARENT);
+                            toUpdate.invalidate();
+                            try {
+                                dismissSpinner();
+                            } catch (final Exception ex) {
+                                Log.i("---","Exception in thread");
+                            }
+                        }
+                    });
+
+                    if (mTurnData.turnoAtaque) {
+                        if (StadiumUtil.llevaBalon(card)) {
+                            //movimiento con balon
+                            //check if there is other card
+                            if(StadiumUtil.hayCartaEnPosicion(card,cardsEspejo)){
+                                //movimiento con balon marcado (defensa o hombre)
+
+                            }
+                        }
+                        else {
+                            //movimiento sin balon
+
+                        }
+                    }
+                }
+
             }
+        }
+    }
 	
 	@Override
     protected void onStart() {
@@ -252,7 +300,7 @@ public class StadiumActivity extends FragmentActivity implements GoogleApiClient
     // and figure out what to do.
     public void onStartMatchClicked(View view) {
         Intent intent = Games.TurnBasedMultiplayer.getSelectOpponentsIntent(mGoogleApiClient,
-                1, 7, true);
+                1, 1, true);
         startActivityForResult(intent, RC_SELECT_PLAYERS);
     }
 
@@ -395,12 +443,12 @@ public class StadiumActivity extends FragmentActivity implements GoogleApiClient
 
     public void showSpinner() {
 
-        //findViewById(R.id.progressLayout).setVisibility(View.VISIBLE);
+        findViewById(R.id.progressLayout).setVisibility(View.VISIBLE);
     }
 
     public void dismissSpinner() {
 
-        //findViewById(R.id.progressLayout).setVisibility(View.GONE);
+        findViewById(R.id.progressLayout).setVisibility(View.GONE);
     }
 
     // Generic warning/info dialog
@@ -800,6 +848,6 @@ public class StadiumActivity extends FragmentActivity implements GoogleApiClient
         }
 
         return false;
-    }		   
-      
+    }
+
 }
